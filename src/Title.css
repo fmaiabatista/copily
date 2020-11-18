@@ -1,0 +1,32 @@
+.Title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.Title .title-wrapper {
+  color: var(--gs-primary);
+  position: relative;
+}
+
+.Title h1 {
+  font-family: 'Sacramento', cursive;
+  font-size: 64px;
+  font-weight: normal;
+  margin: 0;
+}
+
+.Title img {
+  height: 16px;
+  width: 16px;
+  position: absolute;
+  top: 22px;
+  right: -15px;
+}
+
+.Title p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  color: var(--gs-secondary);
+}

@@ -28,11 +28,14 @@ module.exports = {
     sourceType: 'module',
     project: './tsconfig.json',
   },
+  ignorePatterns: [
+    ".eslintrc.js",
+  ],
   rules: {
     '@typescript-eslint/camelcase': 0,
     'linebreak-style': 0,
     'prettier/prettier': [
-      1,
+      2,
       {
         endOfLine: 'auto',
       },
