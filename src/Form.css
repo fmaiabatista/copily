@@ -3,3 +3,44 @@
   justify-content: center;
   align-items: center;
 }
+
+.Form input {
+  width: 270px;
+  height: 48px;
+  padding: 0 12px;
+  font-size: 20px;
+  font-family: 'Open sans', sans-serif;
+  color: var(--gs-primary);
+}
+
+.Form input::placeholder {
+  color: var(--gs-tertiary);
+  font-weight: 300;
+}
+
+.Form input,
+.Form button {
+  border: 1px solid var(--gs-secondary);
+  border-radius: 8px;
+}
+
+.Form button {
+  width: 48px;
+  height: 48px;
+  background: var(--gs-quaternary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 12px;
+  transition: background 0.3s ease-in-out;
+}
+
+.Form button:hover {
+  background: var(--gs-tertiary);
+}
+
+.Form .arrow-right {
+  width: 24px;
+  height: 24px;
+}

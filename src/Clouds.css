@@ -1,4 +1,28 @@
+.Clouds {
+
+}
+
 .Clouds img {
   width: 247px;
   height: 123px;
+}
+
+.cloud-0 {
+  position: absolute;
+  transform: translate(93px, 4vh);
+}
+
+.cloud-1 {
+  position: absolute;
+  transform: translate(432px, 9vh);
+}
+
+.cloud-2 {
+  position: absolute;
+  transform: translate(997px, 1.5vh);
+}
+
+.cloud-3 {
+  position: absolute;
+  transform: translate(1181px, 21vh);
 }
