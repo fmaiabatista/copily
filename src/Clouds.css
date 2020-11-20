@@ -1,5 +1,6 @@
 .Clouds {
-
+  position: relative;
+  z-index: -1;
 }
 
 .Clouds img {

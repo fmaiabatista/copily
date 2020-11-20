@@ -2,7 +2,7 @@ import React from 'react'
 import './Clouds.css'
 import cloud from './assets/img/cloud.svg'
 
-const Clouds: React.FunctionComponent = () => {
+const Clouds: React.FC = () => {
   const qty = 4
 
   return (

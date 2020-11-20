@@ -1,0 +1,26 @@
+.App {
+  height: 100%;
+  overflow: hidden;
+}
+
+.App .Page {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 24px 1fr 24px;
+}
+
+.App .Page1 {
+  grid-template-rows: 26vh 1fr;
+}
+
+.App .Page1 .grid-wrapper {
+  grid-area: 2 / 2 / 3 / 3;
+}
+
+.App .Page2 {
+  grid-template-rows: 5vh 1fr;
+}
+
+.App .Page2 .grid-wrapper {
+  grid-area: 2 / 2 / 3 / 3;
+}

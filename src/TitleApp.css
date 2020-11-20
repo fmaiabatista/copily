@@ -1,25 +1,24 @@
-.Title {
+.TitleApp {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding-top: 26vh;
   margin-bottom: 14px;
 }
 
-.Title .title-wrapper {
+.TitleApp .title-wrapper {
   color: var(--gs-primary);
   position: relative;
 }
 
-.Title h1 {
+.TitleApp h1 {
   font-family: 'Sacramento', cursive;
   font-size: 64px;
   font-weight: normal;
   margin: 0;
 }
 
-.Title img {
+.TitleApp .paperplane {
   height: 16px;
   width: 16px;
   position: absolute;
@@ -27,7 +26,7 @@
   right: -15px;
 }
 
-.Title p {
+.TitleApp p {
   font-family: 'Montserrat', sans-serif;
   font-size: 18px;
   color: var(--gs-secondary);

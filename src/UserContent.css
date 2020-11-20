@@ -1,0 +1,45 @@
+.UserContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex: 1;
+}
+
+.UserContent .user-content {
+  padding: 12px;
+  font-size: 20px;
+  font-family: 'Open sans', sans-serif;
+  color: var(--gs-primary);
+  border: 1px solid var(--gs-secondary);
+  border-radius: 8px;
+  flex: 1;
+}
+
+.UserContent .user-content::placeholder {
+  color: var(--gs-tertiary);
+  font-weight: 300;
+}
+
+::-webkit-input-placeholder {
+  text-align: center;
+}
+
+.UserContent .footer-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.UserContent .leaf {
+  width: 24px;
+  height: 24px;
+  margin-right: 6px;
+}
+
+.UserContent sub {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  color: var(--gs-secondary);
+}

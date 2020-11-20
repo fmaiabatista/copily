@@ -2,7 +2,7 @@ import React from 'react'
 import './Form.css'
 import arrowRight from './assets/img/arrow-right.svg'
 
-const Form: React.FunctionComponent = () => {
+const Form: React.FC = () => {
   const handleClick = () => {
     // openRoom()
   }

@@ -1,0 +1,45 @@
+.TitleRoom {
+  display: grid;
+  grid-template-columns: 64px 1fr 64px;
+  grid-template-rows: 64px 1fr;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.TitleRoom .arrow-left {
+  height: 64px;
+  width: 64px;
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.TitleRoom h1 {
+  font-family: 'Montserrat', cursive;
+  font-size: 48px;
+  font-weight: normal;
+  margin: 0;
+  color: var(--gs-primary);
+  grid-area: 1 / 2 / 2 / 4;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.TitleRoom .save-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-area: 2 / 2 / 3 / 3;
+}
+
+.TitleRoom .paperplane {
+  height: 16px;
+  width: 16px;
+}
+
+.TitleRoom p {
+  font-family: 'Sacramento', sans-serif;
+  font-size: 32px;
+  color: var(--gs-secondary);
+  margin: 0 9px 0 0;
+  line-height: 1em;
+}

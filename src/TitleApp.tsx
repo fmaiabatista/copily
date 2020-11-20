@@ -1,10 +1,10 @@
 import React from 'react'
-import './Title.css'
+import './TitleApp.css'
 import paperplane from './assets/img/paperplane.svg'
 
-const Title: React.FunctionComponent = () => {
+const TitleApp: React.FC = () => {
   return (
-    <div className="Title">
+    <div className="TitleApp">
       <div className="title-wrapper">
         <h1>copily</h1>
         <img className="paperplane" src={paperplane} alt="paperplane" />
@@ -14,4 +14,4 @@ const Title: React.FunctionComponent = () => {
   )
 }
 
-export default Title
+export default TitleApp
