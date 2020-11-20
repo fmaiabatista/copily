@@ -3,22 +3,24 @@
   grid-template-columns: 64px 1fr 64px;
   grid-template-rows: 64px 1fr;
   align-items: center;
+  justify-items: center;
   margin-bottom: 16px;
 }
 
 .TitleRoom .arrow-left {
-  height: 64px;
-  width: 64px;
+  height: 32px;
+  width: 32px;
   grid-area: 1 / 1 / 2 / 2;
+  justify-self: start;
 }
 
 .TitleRoom h1 {
   font-family: 'Montserrat', cursive;
-  font-size: 48px;
+  font-size: 42px;
   font-weight: normal;
   margin: 0;
   color: var(--gs-primary);
-  grid-area: 1 / 2 / 2 / 4;
+  grid-area: 1 / 2 / 2 / 3;
   text-overflow: ellipsis;
   overflow: hidden;
 }

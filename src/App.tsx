@@ -1,7 +1,7 @@
 import React from 'react'
 import Clouds from './Clouds'
-// import TitleApp from './TitleApp'
-// import Form from './Form'
+import TitleApp from './TitleApp'
+import Form from './Form'
 import TitleRoom from './TitleRoom'
 import UserContent from './UserContent'
 import './App.css'
@@ -13,14 +13,14 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <Clouds />
-      {/* <div className="Page Page1">
-        <div className="grid-wrapper">
+      <div className="Page Page1">
+        <div className="content-wrapper">
           <TitleApp />
           <Form />
         </div>
-      </div> */}
+      </div>
       <div className="Page Page2">
-        <div className="grid-wrapper">
+        <div className="content-wrapper">
           <TitleRoom roomName={roomName} isSaved={isSaved} />
           <UserContent />
         </div>

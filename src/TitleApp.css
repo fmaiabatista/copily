@@ -3,7 +3,6 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-bottom: 14px;
 }
 
 .TitleApp .title-wrapper {
@@ -30,4 +29,5 @@
   font-family: 'Montserrat', sans-serif;
   font-size: 18px;
   color: var(--gs-secondary);
+  text-align: center;
 }

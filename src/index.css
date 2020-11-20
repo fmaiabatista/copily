@@ -1,5 +1,9 @@
 @import-normalize;
 
+* {
+  box-sizing: border-box;
+}
+
 :root {
   --bg-grad: linear-gradient(180deg, #DBE9F1 0%, #EDF4F8 18.75%, #FFFFFF 33.33%, #FFFFFF 100%);
   --gs-primary: #4A4A4A;

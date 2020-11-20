@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .Form input {
@@ -21,6 +22,7 @@
 .Form button {
   border: 1px solid var(--gs-secondary);
   border-radius: 8px;
+  margin-top: 14px;
 }
 
 .Form button {
@@ -32,6 +34,7 @@
   align-items: center;
   justify-content: center;
   margin-left: 12px;
+  margin-right: 12px;
   transition: background 0.3s ease-in-out;
 }
 
