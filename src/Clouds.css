@@ -1,29 +1,106 @@
 .Clouds {
   position: relative;
   z-index: -1;
+
+  /* Horizontal Position */
+  --cloud-0-x: 93px;
+  --cloud-1-x: 432px;
+  --cloud-2-x: 997px;
+  --cloud-3-x: 1181px;
+  --cloud-4-x: calc(var(--cloud-0-x) + 1400px);
+  --cloud-5-x: calc(var(--cloud-1-x) + 1400px);
+  --cloud-6-x: calc(var(--cloud-2-x) + 1400px);
+  --cloud-7-x: calc(var(--cloud-3-x) + 1400px);
+  /* Duration */
+  --cloud-0-t: 17s;
+  --cloud-1-t: 28s;
+  --cloud-2-t: 41s;
+  --cloud-3-t: 49s;
+  --cloud-4-t: 77s;
+  --cloud-5-t: 84s;
+  --cloud-6-t: 91s;
+  --cloud-7-t: 109s;
+  /* Delay */
+  --cloud-0-d: 0.8s;
+  --cloud-1-d: 0.6s;
+  --cloud-2-d: 0.8s;
+  --cloud-3-d: 1s;
+  --cloud-4-d: 0.6s;
+  --cloud-5-d: 1s;
+  --cloud-6-d: 0.6s;
+  --cloud-7-d: 0.8s;
 }
 
 .Clouds img {
   width: 247px;
   height: 123px;
+  position: absolute;
 }
 
 .cloud-0 {
-  position: absolute;
-  transform: translate(93px, 4vh);
+  margin-top: 4vh;
+  transform: translateX(var(--cloud-0-x));
+  animation: movecloud var(--cloud-0-t) linear var(--cloud-0-d) forwards, fullopacity var(--cloud-0-t) linear;
 }
 
 .cloud-1 {
-  position: absolute;
-  transform: translate(432px, 9vh);
+  margin-top: 9vh;
+  transform: translateX(var(--cloud-1-x));
+  animation: movecloud var(--cloud-1-t) linear var(--cloud-1-d) forwards, fullopacity var(--cloud-1-t) linear;
 }
 
 .cloud-2 {
-  position: absolute;
-  transform: translate(997px, 1.5vh);
+  margin-top: 1.5vh;
+  transform: translateX(var(--cloud-2-x));
+  animation: movecloud var(--cloud-2-t) linear var(--cloud-2-d) infinite, fullopacity var(--cloud-2-t) linear;
 }
 
 .cloud-3 {
-  position: absolute;
-  transform: translate(1181px, 21vh);
+  margin-top: 21vh;
+  transform: translateX(var(--cloud-3-x));
+  animation: movecloud var(--cloud-3-t) linear var(--cloud-3-d) infinite, fullopacity var(--cloud-3-t) linear;
+}
+
+.cloud-4 {
+  margin-top: 4vh;
+  transform: translateX(var(--cloud-4-x));
+  animation: movecloud var(--cloud-4-t) linear var(--cloud-4-d) infinite, fullopacity var(--cloud-4-t) linear;
+}
+
+.cloud-5 {
+  margin-top: 9vh;
+  transform: translateX(var(--cloud-5-x));
+  animation: movecloud var(--cloud-5-t) linear var(--cloud-5-d) infinite, fullopacity var(--cloud-5-t) linear;
+}
+
+.cloud-6 {
+  margin-top: 1.5vh;
+  transform: translateX(var(--cloud-6-x));
+  animation: movecloud var(--cloud-6-t) linear var(--cloud-6-d) infinite, fullopacity var(--cloud-6-t) linear;
+}
+
+.cloud-7 {
+  margin-top: 21vh;
+  transform: translateX(var(--cloud-7-x));
+  animation: movecloud var(--cloud-7-t) linear var(--cloud-7-d) infinite, fullopacity var(--cloud-7-t) linear;
+}
+
+@keyframes movecloud {
+  0% {
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(-257px);
+  }
+}
+
+@keyframes fullopacity {
+  0%, 100% {
+    opacity: 1;
+  }
 }

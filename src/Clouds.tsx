@@ -3,7 +3,7 @@ import './Clouds.css'
 import cloud from './assets/img/cloud.svg'
 
 const Clouds: React.FC = () => {
-  const qty = 4
+  const qty = 8
 
   return (
     <div className="Clouds">
