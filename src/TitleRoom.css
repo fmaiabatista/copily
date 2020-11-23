@@ -7,11 +7,27 @@
   margin-bottom: 16px;
 }
 
+.TitleRoom button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+  border-radius: 50%;
+  justify-self: start;
+  height: 48px;
+  width: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.TitleRoom button:hover {
+  background: var(--gs-tertiary);
+}
+
 .TitleRoom .arrow-left {
   height: 32px;
   width: 32px;
-  grid-area: 1 / 1 / 2 / 2;
-  justify-self: start;
 }
 
 .TitleRoom h1 {

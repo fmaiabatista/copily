@@ -1,12 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import './Form.css'
 import arrowRight from './assets/img/arrow-right.svg'
 
-const Form: React.FC = () => {
-  const handleClick = () => {
-    // openRoom()
-  }
-
+const Form: React.FC<FormProps> = ({ handleClick }) => {
   return (
     <div className="Form">
       <div>
@@ -27,3 +24,11 @@ const Form: React.FC = () => {
 }
 
 export default Form
+
+Form.propTypes = {
+  handleClick: PropTypes.func.isRequired,
+}
+
+type FormProps = {
+  handleClick: () => void
+}
