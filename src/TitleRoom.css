@@ -22,7 +22,7 @@
 }
 
 .TitleRoom button:hover {
-  background: var(--gs-tertiary);
+  background: rgba(var(--gs-tertiary-rgb), 0.7);
 }
 
 .TitleRoom .arrow-left {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Clouds from './Clouds'
-import TitleApp from './TitleApp'
+import TitleHome from './TitleHome'
 import Form from './Form'
 import TitleRoom from './TitleRoom'
 import UserContent from './UserContent'
@@ -17,7 +17,7 @@ const App: React.FC = () => {
       {whichPage === 1 && (
         <div className="Page Page1">
           <div className="content-wrapper">
-            <TitleApp />
+            <TitleHome />
             <Form handleClick={() => setWhichPage(2)} />
           </div>
         </div>

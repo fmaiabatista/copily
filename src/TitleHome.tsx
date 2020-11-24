@@ -1,10 +1,10 @@
 import React from 'react'
-import './TitleApp.css'
+import './TitleHome.css'
 import paperplane from './assets/img/paperplane.svg'
 
-const TitleApp: React.FC = () => {
+const TitleHome: React.FC = () => {
   return (
-    <div className="TitleApp">
+    <div className="TitleHome">
       <div className="title-wrapper">
         <h1>copily</h1>
         <img className="paperplane" src={paperplane} alt="paperplane" />
@@ -14,4 +14,4 @@ const TitleApp: React.FC = () => {
   )
 }
 
-export default TitleApp
+export default TitleHome
