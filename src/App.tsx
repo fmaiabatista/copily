@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Clouds from './Clouds'
 import TitleHome from './TitleHome'
 import Form from './Form'
@@ -9,7 +9,36 @@ import './App.css'
 const App: React.FC = () => {
   const roomName = 'xEam43'
   const isSaved = false
-  const [whichPage, setWhichPage] = useState(1)
+  const [whichPage, setWhichPage] = useState<number>(1)
+  const [isLoaded, setIsLoaded] = useState<boolean>(false)
+  const [error, setError] = useState<error>()
+  const [room, setRoom] = useState()
+
+  useEffect(() => {
+    fetch('https://my.api.mockaroo.com/copily/123.json?key=97869d60')
+      .then((res) => {
+        console.log(res)
+        return res.json()
+      })
+      .then(
+        (result) => {
+          setIsLoaded(true)
+          setRoom(result)
+        },
+        (err) => {
+          setIsLoaded(true)
+          setError(err)
+        }
+      )
+  }, [])
+
+  if (error) {
+    return <div>Error: {error.message}</div>
+  }
+
+  if (!isLoaded) {
+    return <div>Loading...</div>
+  }
 
   return (
     <div className="App">
@@ -26,11 +55,11 @@ const App: React.FC = () => {
         <div className="Page Page2">
           <div className="content-wrapper">
             <TitleRoom
-              roomName={roomName}
+              room={room}
               isSaved={isSaved}
               handleClick={() => setWhichPage(1)}
             />
-            <UserContent />
+            <UserContent room={room} />
           </div>
         </div>
       )}
