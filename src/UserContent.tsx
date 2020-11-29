@@ -1,8 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import './UserContent.css'
 import leaf from './assets/img/leaf.svg'
 
-const UserContent: React.FC = () => {
+const UserContent: React.FC<UserContentProps> = ({
+  roomContent = '',
+  handleChange,
+}) => {
   return (
     <div className="UserContent">
       <textarea
@@ -11,6 +15,8 @@ const UserContent: React.FC = () => {
         placeholder="write to your heart's content"
         cols={28}
         rows={10}
+        value={roomContent}
+        onChange={handleChange}
       />
       <div className="footer-wrapper">
         <img className="leaf" src={leaf} alt="leaf" />
@@ -24,3 +30,14 @@ const UserContent: React.FC = () => {
 }
 
 export default UserContent
+
+UserContent.propTypes = {
+  roomContent: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
+}
+
+type UserContentProps = {
+  roomContent: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  handleChange: (ev: any) => void
+}

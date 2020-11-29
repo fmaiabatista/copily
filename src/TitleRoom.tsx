@@ -5,7 +5,7 @@ import paperplane from './assets/img/paperplane.svg'
 import arrowLeft from './assets/img/arrow-left.svg'
 
 const TitleRoom: React.FC<TitleRoomProps> = ({
-  roomName = '',
+  roomKey = '',
   isSaved = false,
   handleClick,
 }) => {
@@ -14,7 +14,7 @@ const TitleRoom: React.FC<TitleRoomProps> = ({
       <button type="button" onClick={handleClick}>
         <img className="arrow-left" src={arrowLeft} alt="arrow-left" />
       </button>
-      <h1>{roomName}</h1>
+      <h1>{roomKey}</h1>
       <div className="save-wrapper">
         {isSaved && <p>autosaved</p>}
         {!isSaved && <p>saving...</p>}
@@ -27,13 +27,13 @@ const TitleRoom: React.FC<TitleRoomProps> = ({
 export default TitleRoom
 
 TitleRoom.propTypes = {
-  roomName: PropTypes.string.isRequired,
+  roomKey: PropTypes.string.isRequired,
   isSaved: PropTypes.bool.isRequired,
   handleClick: PropTypes.func.isRequired,
 }
 
 type TitleRoomProps = {
-  roomName: string
+  roomKey: string
   isSaved: boolean
   handleClick: () => void
 }
