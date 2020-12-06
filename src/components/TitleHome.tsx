@@ -1,6 +1,6 @@
 import React from 'react'
 import './TitleHome.css'
-import paperplane from './assets/img/paperplane.svg'
+import paperplane from '../assets/img/paperplane.svg'
 
 const TitleHome: React.FC = () => {
   return (

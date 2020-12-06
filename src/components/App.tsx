@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import Clouds from './Clouds'
 import TitleHome from './TitleHome'
 import Form from './Form'
 import TitleRoom from './TitleRoom'
 import UserContent from './UserContent'
 import './App.css'
+import { TRoom } from '../types'
 
 const emptyRoom = {
-  id: -1,
-  key: '',
   content: '',
   createdAt: '',
   expiresAt: '',
@@ -16,33 +15,20 @@ const emptyRoom = {
 
 const App: React.FC = () => {
   const [whichPage, setWhichPage] = useState<number>(1)
-  const [isLoaded, setIsLoaded] = useState<boolean>(true)
   const [isSaved, setIsSaved] = useState<boolean>(true)
-  const [error, setError] = useState<Error>()
+
+  const [roomKey, setRoomKey] = useState<string>('')
   const [room, setRoom] = useState<TRoom>(emptyRoom)
+
   const [requestTimeout, setRequestTimeout] = useState<number>()
 
-  const handleRoomSubmit = () => {
-    setIsLoaded(false)
-
-    fetch('https://my.api.mockaroo.com/copily/123.json?key=97869d60')
-      .then((res) => res.json())
-      .then(
-        (data) => {
-          setRoom(data)
-          setWhichPage(2)
-        },
-        (err) => {
-          setError(err)
-        }
-      )
-      .finally(() => {
-        setIsLoaded(true)
-      })
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleRoomKeyChange = (ev: any) => {
+    setRoomKey(ev.target.value)
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleContentChange = (ev: any) => {
+  const handleRoomContentChange = (ev: any) => {
     setRoom({ ...room, content: ev.target.value })
     setIsSaved(false)
 
@@ -56,13 +42,7 @@ const App: React.FC = () => {
     )
   }
 
-  if (error) {
-    return <div>Error: {error.message}</div>
-  }
-
-  if (!isLoaded) {
-    return <div>Loading...</div>
-  }
+  const foo = useCallback((content) => setRoom((r) => ({ ...r, content })), [])
 
   return (
     <div className="App">
@@ -71,7 +51,11 @@ const App: React.FC = () => {
         <div className="Page Page1">
           <div className="content-wrapper">
             <TitleHome />
-            <Form handleClick={handleRoomSubmit} />
+            <Form
+              roomKey={roomKey}
+              handleChange={handleRoomKeyChange}
+              handleClick={() => setWhichPage(2)}
+            />
           </div>
         </div>
       )}
@@ -79,14 +63,16 @@ const App: React.FC = () => {
         <div className="Page Page2">
           <div className="content-wrapper">
             <TitleRoom
-              roomKey={room.key}
+              roomKey={roomKey}
               isSaved={isSaved}
               // Todo: Handle Back To Home
               handleClick={() => setWhichPage(1)}
             />
             <UserContent
+              roomKey={roomKey}
               roomContent={room.content}
-              handleChange={handleContentChange}
+              loadRoomContent={foo}
+              handleChange={handleRoomContentChange}
             />
           </div>
         </div>
@@ -96,11 +82,3 @@ const App: React.FC = () => {
 }
 
 export default App
-
-type TRoom = {
-  id: number
-  key: string
-  content: string
-  createdAt: string
-  expiresAt: string
-}

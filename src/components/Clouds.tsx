@@ -1,6 +1,6 @@
 import React from 'react'
 import './Clouds.css'
-import cloud from './assets/img/cloud.svg'
+import cloud from '../assets/img/cloud.svg'
 
 const Clouds: React.FC = () => {
   const qty = 8

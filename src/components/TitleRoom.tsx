@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import './TitleRoom.css'
-import paperplane from './assets/img/paperplane.svg'
-import arrowLeft from './assets/img/arrow-left.svg'
+import paperplane from '../assets/img/paperplane.svg'
+import arrowLeft from '../assets/img/arrow-left.svg'
 
 const TitleRoom: React.FC<TitleRoomProps> = ({
   roomKey = '',
