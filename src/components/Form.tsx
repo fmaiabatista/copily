@@ -40,7 +40,6 @@ Form.propTypes = {
 
 type FormProps = {
   roomKey: string
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   handleChange: (ev: any) => void
   handleClick: () => void
 }

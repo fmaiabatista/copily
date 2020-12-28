@@ -1,40 +1,21 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { useDocumentData } from 'react-firebase-hooks/firestore'
-import firebase from '../firebase'
 import './UserContent.css'
 import leaf from '../assets/img/leaf.svg'
 import { TRoom } from '../types'
 
-const firestoreDefaultOptions = {
-  snapshotListenOptions: { includeMetadataChanges: true },
-}
-
-const UserContent: React.FC<UserContentProps> = ({
-  roomKey = '',
-  roomContent = '',
-  loadRoomContent,
-  handleChange,
-}) => {
-  const [data, loading, error] = useDocumentData(
-    firebase.firestore().doc(`rooms/${roomKey}`),
-    firestoreDefaultOptions
-  )
-
+const UserContent: React.FC<UserContentProps> = ({ room, handleChange }) => {
   useEffect(() => {
-    console.log(data)
-    if (data) {
-      loadRoomContent((data as TRoom).content)
-    }
-  }, [loadRoomContent, data])
+    // if room.expiresAt < now, should invoke handleChange passing clearing room content
+  }, [])
 
-  if (error) {
-    return <div>Error: {error.message}</div>
-  }
+  // if (error) {
+  //   return <div>Error: {error.message}</div>
+  // }
 
-  if (loading) {
-    return <div>Loading...</div>
-  }
+  // if (loading) {
+  //   return <div>Loading...</div>
+  // }
 
   return (
     <div className="UserContent">
@@ -44,7 +25,7 @@ const UserContent: React.FC<UserContentProps> = ({
         placeholder="write to your heart's content"
         cols={28}
         rows={10}
-        value={roomContent}
+        value={room.content}
         onChange={handleChange}
       />
       <div className="footer-wrapper">
@@ -61,16 +42,22 @@ const UserContent: React.FC<UserContentProps> = ({
 export default UserContent
 
 UserContent.propTypes = {
-  roomKey: PropTypes.string.isRequired,
-  roomContent: PropTypes.string.isRequired,
-  loadRoomContent: PropTypes.func.isRequired,
+  room: PropTypes.shape({
+    key: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+    createdAt: PropTypes.shape({
+      seconds: PropTypes.number.isRequired,
+      nanoseconds: PropTypes.number.isRequired,
+    }).isRequired,
+    expiresAt: PropTypes.shape({
+      seconds: PropTypes.number.isRequired,
+      nanoseconds: PropTypes.number.isRequired,
+    }).isRequired,
+  }).isRequired,
   handleChange: PropTypes.func.isRequired,
 }
 
 type UserContentProps = {
-  roomKey: string
-  roomContent: string
-  loadRoomContent: (content: string) => void
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  room: TRoom
   handleChange: (ev: any) => void
 }

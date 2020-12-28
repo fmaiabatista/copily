@@ -5,8 +5,8 @@ import paperplane from '../assets/img/paperplane.svg'
 import arrowLeft from '../assets/img/arrow-left.svg'
 
 const TitleRoom: React.FC<TitleRoomProps> = ({
-  roomKey = '',
-  isSaved = false,
+  roomKey,
+  isSaved,
   handleClick,
 }) => {
   return (
