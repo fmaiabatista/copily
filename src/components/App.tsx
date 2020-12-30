@@ -12,10 +12,6 @@ import db from '../firebase'
 const EMPTY_ROOM = {
   key: '',
   content: '',
-  createdAt: {
-    seconds: 0,
-    nanoseconds: 0,
-  },
   expiresAt: {
     seconds: 0,
     nanoseconds: 0,
@@ -39,66 +35,49 @@ const App: React.FC = () => {
       .doc(room.key)
       .set({
         content,
-        createdAt: new Date(),
         expiresAt: addHours(new Date(), 1),
       })
   }
 
   const createRoom = async () => {
-    // console.log('creating room')
     await updateRoom()
-
-    // console.log('created room, now will retrieve it')
     const doc = await db.collection('rooms').doc(room.key).get()
 
     return doc.data()
   }
 
   const fetchRoom = () => {
-    // console.log('will fetch room')
-
-    return new Promise((resolve, reject) => {
-      // console.log('fetching room')
-      db.collection('rooms')
-        .doc(room.key)
-        .get()
-        .then((doc) => {
-          // doc exists
-          if (doc.exists) {
-            // console.log('exists, retrieving data')
-            // todo - test if doc is expired
-            return doc.data()
-          }
-
-          // console.log('doesnt exist, will create room')
-          // doc doesnt exist or is expired - create new
+    return db
+      .collection('rooms')
+      .doc(room.key)
+      .get()
+      .then((doc) => {
+        if (!doc.exists) {
           return createRoom()
-        })
-        .then((json) => {
-          // console.log(json)
-          resolve(json)
-        })
-        .catch((error) => {
-          setIsError(error)
-          reject(error)
-        })
-        .finally(() => setIsLoading(false))
-    })
+        }
+
+        // todo - test if doc is expired
+        return doc.data()
+      })
   }
 
   const handleRoomKeyChange = (ev: any) => {
-    setRoom({ ...room, key: ev.target.value })
+    setRoom({ ...room, key: ev.target.value && ev.target.value.toLowerCase() })
   }
 
-  const handleEnterRoom = () => {
-    // todo - create error message for when room key is empty
-    if (room.key) {
-      fetchRoom().then((data) => {
-        // console.log('received room')
-        const { content, createdAt, expiresAt } = data as TRoomDTO
-        setRoom({ ...room, content, createdAt, expiresAt })
-        setPage(2)
-      })
+  const handleEnterRoom = (ev: any) => {
+    ev.preventDefault()
+
+    if (room.key && room.key.length > 2) {
+      setIsLoading(true)
+      fetchRoom()
+        .then((json) => {
+          const { content, expiresAt } = json as TRoomDTO
+          setRoom({ ...room, content, expiresAt })
+          setPage(2)
+        })
+        .catch((error) => setIsError(error))
+        .finally(() => setIsLoading(false))
     }
   }
 
@@ -126,25 +105,25 @@ const App: React.FC = () => {
   }
 
   // todo - add kb a11y for Enter key
-  // todo - error & loading states
+  // todo - error state
   return (
     <div className="App">
       <Clouds />
       {isError && <div>error</div>}
-      {isLoading && <div>loading</div>}
-      {page === 1 && (
+      {!isError && page === 1 && (
         <div className="Page Page1">
           <div className="content-wrapper">
             <TitleHome />
             <Form
               roomKey={room.key}
+              isLoading={isLoading}
               handleChange={handleRoomKeyChange}
-              handleClick={handleEnterRoom}
+              handleSubmit={handleEnterRoom}
             />
           </div>
         </div>
       )}
-      {page === 2 && (
+      {!isError && page === 2 && (
         <div className="Page Page2">
           <div className="content-wrapper">
             <TitleRoom

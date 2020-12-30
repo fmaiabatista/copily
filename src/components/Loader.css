@@ -1,0 +1,33 @@
+.Loader {
+  width: 33px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Loader div {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: var(--gs-primary);
+  transform: translateY(-75%);
+  animation: wave 0.8s ease-in-out alternate infinite;
+}
+
+.Loader div:nth-of-type(1) {
+  animation-delay: -0.4s;
+}
+
+.Loader div:nth-of-type(2) {
+  animation-delay: -0.2s;
+}
+
+@keyframes wave {
+  from {
+    transform: translateY(-75%);
+  }
+  to {
+    transform: translateY(75%);
+  }
+}

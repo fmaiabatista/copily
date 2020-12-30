@@ -1,6 +1,5 @@
 export type TRoomDTO = {
   content: string
-  createdAt: FirebaseTimestamp
   expiresAt: FirebaseTimestamp
 }
 

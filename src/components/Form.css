@@ -35,10 +35,15 @@
   justify-content: center;
   margin-left: 12px;
   margin-right: 12px;
-  transition: background 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
-.Form button:hover {
+.Form button:disabled {
+  opacity: 0.2;
+  cursor: default;
+}
+
+.Form button:hover:not(:disabled) {
   background: var(--gs-tertiary);
 }
 

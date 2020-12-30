@@ -45,10 +45,6 @@ UserContent.propTypes = {
   room: PropTypes.shape({
     key: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
-    createdAt: PropTypes.shape({
-      seconds: PropTypes.number.isRequired,
-      nanoseconds: PropTypes.number.isRequired,
-    }).isRequired,
     expiresAt: PropTypes.shape({
       seconds: PropTypes.number.isRequired,
       nanoseconds: PropTypes.number.isRequired,
