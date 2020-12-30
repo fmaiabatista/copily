@@ -39,8 +39,7 @@
 }
 
 .Form button:disabled {
-  opacity: 0.2;
-  cursor: default;
+  cursor: not-allowed;
 }
 
 .Form button:hover:not(:disabled) {

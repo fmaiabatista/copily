@@ -84,16 +84,12 @@ const App: React.FC = () => {
   const handleRoomContentChange = (ev: any) => {
     const content = ev.target.value
 
-    // write to local state
     setRoom({ ...room, content })
     setIsSaved(false)
 
     clearTimeout(requestTimeout)
-
-    // wait timeout to update the database and saved state
     setRequestTimeout(
       window.setTimeout(() => {
-        // update database
         updateRoom(content).then(() => setIsSaved(true))
       }, 1500)
     )
@@ -104,7 +100,6 @@ const App: React.FC = () => {
     setPage(1)
   }
 
-  // todo - add kb a11y for Enter key
   // todo - error state
   return (
     <div className="App">

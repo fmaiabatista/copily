@@ -1,16 +1,32 @@
 import React from 'react'
 import './TitleHome.css'
+import { motion } from 'framer-motion'
 import paperplane from '../assets/img/paperplane.svg'
+
+const parent = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.3 } },
+}
+
+const child = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 1 } },
+}
 
 const TitleHome: React.FC = () => {
   return (
-    <div className="TitleHome">
-      <div className="title-wrapper">
+    <motion.div
+      className="TitleHome"
+      initial="hidden"
+      animate="visible"
+      variants={parent}
+    >
+      <motion.div className="title-wrapper" variants={child}>
         <h1>copily</h1>
         <img className="paperplane" src={paperplane} alt="paperplane" />
-      </div>
-      <p>easy text sharing across devices</p>
-    </div>
+      </motion.div>
+      <motion.p variants={child}>easy text sharing across devices</motion.p>
+    </motion.div>
   )
 }
 

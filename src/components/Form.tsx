@@ -1,8 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import './Form.css'
+import { motion } from 'framer-motion'
 import arrowRight from '../assets/img/arrow-right.svg'
 import Loader from './Loader'
+
+const variants = {
+  hidden: { y: 100, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { delay: 1, duration: 1, type: 'spring' },
+  },
+}
 
 const Form: React.FC<FormProps> = ({
   roomKey,
@@ -11,7 +21,13 @@ const Form: React.FC<FormProps> = ({
   handleSubmit,
 }) => {
   return (
-    <form className="Form" onSubmit={handleSubmit}>
+    <motion.form
+      className="Form"
+      onSubmit={handleSubmit}
+      initial="hidden"
+      animate="visible"
+      variants={variants}
+    >
       <div>
         <input
           type="text"
@@ -25,14 +41,17 @@ const Form: React.FC<FormProps> = ({
       </div>
       <div>
         {/* Todo: make button accessible with Enter */}
-        <button type="submit" disabled={!roomKey || roomKey.length < 3}>
+        <button
+          type="submit"
+          disabled={!roomKey || roomKey.length < 3 || isLoading}
+        >
           {isLoading && <Loader />}
           {!isLoading && (
             <img className="arrow-right" src={arrowRight} alt="arrow-right" />
           )}
         </button>
       </div>
-    </form>
+    </motion.form>
   )
 }
 
