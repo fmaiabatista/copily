@@ -5,7 +5,7 @@ import paperplane from '../assets/img/paperplane.svg'
 
 const parent = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.3 } },
+  visible: { opacity: 1, transition: { duration: 1, staggerChildren: 0.4 } },
 }
 
 const child = {

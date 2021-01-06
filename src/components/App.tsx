@@ -19,13 +19,11 @@ const EMPTY_ROOM = {
 }
 
 const App: React.FC = () => {
-  // App states
   const [page, setPage] = useState<number>(1)
   const [requestTimeout, setRequestTimeout] = useState<number>()
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [isError, setIsError] = useState<boolean>(false)
 
-  // Room states
   const [room, setRoom] = useState<TRoom>(EMPTY_ROOM)
   const [isSaved, setIsSaved] = useState<boolean>(true)
 
@@ -104,7 +102,9 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <Clouds />
+
       {isError && <div>error</div>}
+
       {!isError && page === 1 && (
         <div className="Page Page1">
           <div className="content-wrapper">
@@ -118,6 +118,7 @@ const App: React.FC = () => {
           </div>
         </div>
       )}
+
       {!isError && page === 2 && (
         <div className="Page Page2">
           <div className="content-wrapper">

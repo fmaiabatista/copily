@@ -1,17 +1,17 @@
 .TitleRoom {
-  display: grid;
-  grid-template-columns: 64px 1fr 64px;
-  grid-template-rows: 64px 1fr;
-  align-items: center;
-  justify-items: center;
   margin-bottom: 16px;
+}
+
+.TitleRoom .title-wrapper {
+  display: grid;
+  grid-template-columns: 48px 1fr 48px;
 }
 
 .TitleRoom button {
   background: transparent;
   border: none;
   cursor: pointer;
-  transition: background 0.3s ease-in-out;
+  transition: var(--transition-all-default);
   border-radius: 50%;
   justify-self: start;
   height: 48px;
@@ -22,7 +22,7 @@
 }
 
 .TitleRoom button:hover {
-  background: rgba(var(--gs-tertiary-rgb), 0.7);
+  background: rgba(var(--gs-tertiary-rgb), 0.5);
 }
 
 .TitleRoom .arrow-left {
@@ -39,22 +39,15 @@
   grid-area: 1 / 2 / 2 / 3;
   text-overflow: ellipsis;
   overflow: hidden;
-}
-
-.TitleRoom .save-wrapper {
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  grid-area: 2 / 2 / 3 / 3;
 }
 
-.TitleRoom .paperplane {
-  height: 16px;
-  width: 16px;
-}
-
-.TitleRoom p {
+.TitleRoom .save-status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: 'Sacramento', sans-serif;
   font-size: 32px;
   color: var(--gs-secondary);

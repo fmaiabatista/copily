@@ -1,24 +1,27 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import './UserContent.css'
+import { motion } from 'framer-motion'
 import leaf from '../assets/img/leaf.svg'
 import { TRoom } from '../types'
 
+const variants = {
+  hidden: { y: 100, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { delay: 1, duration: 1, type: 'spring' },
+  },
+}
+
 const UserContent: React.FC<UserContentProps> = ({ room, handleChange }) => {
-  useEffect(() => {
-    // if room.expiresAt < now, should invoke handleChange passing clearing room content
-  }, [])
-
-  // if (error) {
-  //   return <div>Error: {error.message}</div>
-  // }
-
-  // if (loading) {
-  //   return <div>Loading...</div>
-  // }
-
   return (
-    <div className="UserContent">
+    <motion.div
+      className="UserContent"
+      initial="hidden"
+      animate="visible"
+      variants={variants}
+    >
       <textarea
         name="user-content"
         className="user-content"
@@ -35,7 +38,7 @@ const UserContent: React.FC<UserContentProps> = ({ room, handleChange }) => {
           content expires after that.
         </sub>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

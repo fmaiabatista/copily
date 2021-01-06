@@ -1,8 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import './TitleRoom.css'
-import paperplane from '../assets/img/paperplane.svg'
+import { motion } from 'framer-motion'
 import arrowLeft from '../assets/img/arrow-left.svg'
+
+const parent = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 1, staggerChildren: 0.4 } },
+}
+
+const child = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 1 } },
+}
 
 const TitleRoom: React.FC<TitleRoomProps> = ({
   roomKey,
@@ -10,17 +20,23 @@ const TitleRoom: React.FC<TitleRoomProps> = ({
   handleClick,
 }) => {
   return (
-    <div className="TitleRoom">
-      <button type="button" onClick={handleClick}>
-        <img className="arrow-left" src={arrowLeft} alt="arrow-left" />
-      </button>
-      <h1>{roomKey}</h1>
-      <div className="save-wrapper">
-        {isSaved && <p>autosaved</p>}
-        {!isSaved && <p>saving...</p>}
-        <img className="paperplane" src={paperplane} alt="paperplane" />
-      </div>
-    </div>
+    <motion.div
+      className="TitleRoom"
+      initial="hidden"
+      animate="visible"
+      variants={parent}
+    >
+      <motion.div className="title-wrapper" variants={child}>
+        <button type="button" onClick={handleClick}>
+          <img className="arrow-left" src={arrowLeft} alt="arrow-left" />
+        </button>
+        <h1>{`abc${roomKey}`}</h1>
+      </motion.div>
+
+      <motion.div className="save-status" variants={child}>
+        {isSaved ? 'autosaved' : 'saving...'}
+      </motion.div>
+    </motion.div>
   )
 }
 

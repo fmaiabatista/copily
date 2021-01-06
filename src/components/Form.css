@@ -11,6 +11,7 @@
   font-size: 20px;
   font-family: 'Open sans', sans-serif;
   color: var(--gs-primary);
+  transition: var(--transition-all-default);
 }
 
 .Form input::placeholder {
@@ -35,10 +36,12 @@
   justify-content: center;
   margin-left: 12px;
   margin-right: 12px;
-  transition: all 0.3s ease-in-out;
+  transition: var(--transition-all-default);
 }
 
+.Form input:disabled,
 .Form button:disabled {
+  background: rgba(var(--gs-tertiary-rgb), 0.5);
   cursor: not-allowed;
 }
 

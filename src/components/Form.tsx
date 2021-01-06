@@ -37,10 +37,10 @@ const Form: React.FC<FormProps> = ({
           maxLength={12}
           value={roomKey}
           onChange={handleChange}
+          disabled={isLoading}
         />
       </div>
       <div>
-        {/* Todo: make button accessible with Enter */}
         <button
           type="submit"
           disabled={!roomKey || roomKey.length < 3 || isLoading}

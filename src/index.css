@@ -11,6 +11,7 @@
   --gs-tertiary: #DFDFDF;
   --gs-tertiary-rgb: 223, 223, 223;
   --gs-quaternary: #FFFFFF;
+  --transition-all-default: all 0.3s ease-in-out;
 }
 
 body {
