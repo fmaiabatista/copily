@@ -1,5 +1,6 @@
 {
   "name": "copily",
+  "author": "Felipe Maia",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

@@ -30,10 +30,10 @@ const TitleRoom: React.FC<TitleRoomProps> = ({
         <button type="button" onClick={handleClick}>
           <img className="arrow-left" src={arrowLeft} alt="arrow-left" />
         </button>
-        <h1>{`abc${roomKey}`}</h1>
+        <h1>{roomKey}</h1>
       </motion.div>
 
-      <motion.div className="save-status" variants={child}>
+      <motion.div className="save-status" variants={child} key={`${isSaved}`}>
         {isSaved ? 'autosaved' : 'saving...'}
       </motion.div>
     </motion.div>

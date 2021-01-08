@@ -5,12 +5,21 @@ import { motion } from 'framer-motion'
 import leaf from '../assets/img/leaf.svg'
 import { TRoom } from '../types'
 
-const variants = {
+const parent = {
   hidden: { y: 100, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
-    transition: { delay: 1, duration: 1, type: 'spring' },
+    transition: { delay: 1, duration: 1, type: 'spring', delayChildren: 1.4 },
+  },
+}
+
+const child = {
+  hidden: { y: 100, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { duration: 1, type: 'spring' },
   },
 }
 
@@ -20,7 +29,7 @@ const UserContent: React.FC<UserContentProps> = ({ room, handleChange }) => {
       className="UserContent"
       initial="hidden"
       animate="visible"
-      variants={variants}
+      variants={parent}
     >
       <textarea
         name="user-content"
@@ -31,13 +40,13 @@ const UserContent: React.FC<UserContentProps> = ({ room, handleChange }) => {
         value={room.content}
         onChange={handleChange}
       />
-      <div className="footer-wrapper">
+      <motion.div className="footer-wrapper" variants={child}>
         <img className="leaf" src={leaf} alt="leaf" />
         <sub>
           our planes are biodegradable and only last 1 hour in nature. your
           content expires after that.
         </sub>
-      </div>
+      </motion.div>
     </motion.div>
   )
 }

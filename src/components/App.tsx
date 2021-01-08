@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './App.css'
+import { motion } from 'framer-motion'
 import addHours from 'date-fns/addHours'
 import Clouds from './Clouds'
 import TitleHome from './TitleHome'
@@ -8,6 +9,18 @@ import TitleRoom from './TitleRoom'
 import UserContent from './UserContent'
 import { TRoom, TRoomDTO } from '../types'
 import db from '../firebase'
+
+const variants = {
+  hidden: {
+    opacity: 0,
+    y: -100,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, type: 'spring', bounce: 0.8 },
+  },
+}
 
 const EMPTY_ROOM = {
   key: '',
@@ -50,11 +63,10 @@ const App: React.FC = () => {
       .doc(room.key)
       .get()
       .then((doc) => {
-        if (!doc.exists) {
+        if (!doc.exists || doc?.data()?.expiresAt < new Date()) {
           return createRoom()
         }
 
-        // todo - test if doc is expired
         return doc.data()
       })
   }
@@ -98,12 +110,22 @@ const App: React.FC = () => {
     setPage(1)
   }
 
-  // todo - error state
   return (
     <div className="App">
       <Clouds />
 
-      {isError && <div>error</div>}
+      {isError && (
+        <motion.div
+          className="Error"
+          initial="hidden"
+          animate="visible"
+          variants={variants}
+        >
+          <div className="message">
+            Oops, an error occured. Please try again 🤷‍♂️
+          </div>
+        </motion.div>
+      )}
 
       {!isError && page === 1 && (
         <div className="Page Page1">

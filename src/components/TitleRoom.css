@@ -51,6 +51,6 @@
   font-family: 'Sacramento', sans-serif;
   font-size: 32px;
   color: var(--gs-secondary);
-  margin: 0 9px 0 0;
+  margin-top: 6px;
   line-height: 1em;
 }

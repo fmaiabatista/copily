@@ -9,6 +9,22 @@
   grid-template-columns: 24px 1fr 24px;
 }
 
+.App .Error {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 24px 0;
+  width: 100%;
+}
+
+.App .Error .message {
+  background: #FEF3C7;
+  border: 1px solid #FCD34D;
+  padding: 12px 18px;
+  border-radius: 8px;
+}
+
 .App .Page1 {
   grid-template-rows: 26vh 1fr;
 }
