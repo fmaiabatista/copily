@@ -68,7 +68,7 @@ const App: React.FC = () => {
       .doc(room.key)
       .get()
       .then((doc) => {
-        if (!doc.exists || doc?.data()?.expiresAt < new Date()) {
+        if (!doc.exists || doc?.data()?.expiresAt?.toDate() < new Date()) {
           return createRoom()
         }
 
