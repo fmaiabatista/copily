@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import './UserContent.css'
+
 import { motion } from 'framer-motion'
-import leaf from '../assets/img/leaf.svg'
-import { TRoom } from '../types'
+import leaf from '../../assets/img/leaf.svg'
+import { TRoom } from '../../types'
 
 const parent = {
   hidden: { y: 100, opacity: 0 },
@@ -23,17 +23,17 @@ const child = {
   },
 }
 
-const UserContent: React.FC<UserContentProps> = ({ room, handleChange }) => {
+const RoomContent: React.FC<RoomContentProps> = ({ room, handleChange }) => {
   return (
     <motion.div
-      className="UserContent"
+      className="RoomContent"
       initial="hidden"
       animate="visible"
       variants={parent}
     >
       <textarea
-        name="user-content"
-        className="user-content"
+        name="room-content"
+        className="room-content"
         placeholder="write to your heart's content"
         cols={28}
         rows={10}
@@ -51,9 +51,9 @@ const UserContent: React.FC<UserContentProps> = ({ room, handleChange }) => {
   )
 }
 
-export default UserContent
+export default RoomContent
 
-UserContent.propTypes = {
+RoomContent.propTypes = {
   room: PropTypes.shape({
     key: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
@@ -65,7 +65,7 @@ UserContent.propTypes = {
   handleChange: PropTypes.func.isRequired,
 }
 
-type UserContentProps = {
+type RoomContentProps = {
   room: TRoom
   handleChange: (ev: any) => void
 }

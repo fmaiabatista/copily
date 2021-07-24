@@ -1,7 +1,8 @@
-import React from 'react'
-import './TitleHome.css'
+import React, { useContext } from 'react'
+import './HomeTitle.css'
 import { motion } from 'framer-motion'
-import paperplane from '../assets/img/paperplane.svg'
+import paperplane from '../../assets/img/paperplane.svg'
+import RoomContext from '../../contexts/RoomContext'
 
 const parent = {
   hidden: { opacity: 0 },
@@ -13,15 +14,18 @@ const child = {
   visible: { opacity: 1, transition: { duration: 1 } },
 }
 
-const TitleHome: React.FC = () => {
+const HomeTitle: React.FC = () => {
+  const { content } = useContext(RoomContext)
+
   return (
     <motion.div
-      className="TitleHome"
+      className="HomeTitle"
       initial="hidden"
       animate="visible"
       variants={parent}
     >
       <motion.div className="title-wrapper" variants={child}>
+        <div>{content}</div>
         <h1>copily</h1>
         <img className="paperplane" src={paperplane} alt="paperplane" />
       </motion.div>
@@ -30,4 +34,4 @@ const TitleHome: React.FC = () => {
   )
 }
 
-export default TitleHome
+export default HomeTitle

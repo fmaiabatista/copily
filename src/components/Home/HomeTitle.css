@@ -1,23 +1,23 @@
-.TitleHome {
+.HomeTitle {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
-.TitleHome .title-wrapper {
+.HomeTitle .title-wrapper {
   color: var(--gs-primary);
   position: relative;
 }
 
-.TitleHome h1 {
+.HomeTitle h1 {
   font-family: 'Sacramento', cursive;
   font-size: 64px;
   font-weight: normal;
   margin: 0;
 }
 
-.TitleHome .paperplane {
+.HomeTitle .paperplane {
   height: 16px;
   width: 16px;
   position: absolute;
@@ -25,7 +25,7 @@
   right: -15px;
 }
 
-.TitleHome p {
+.HomeTitle p {
   font-family: 'Montserrat', sans-serif;
   font-size: 18px;
   color: var(--gs-secondary);

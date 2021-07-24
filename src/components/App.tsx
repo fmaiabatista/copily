@@ -1,48 +1,27 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  useHistory,
+} from 'react-router-dom'
 import './App.css'
-import { AnimatePresence, motion } from 'framer-motion'
+
 import addHours from 'date-fns/addHours'
-import Clouds from './Clouds'
-import TitleHome from './TitleHome'
-import Form from './Form'
-import TitleRoom from './TitleRoom'
-import UserContent from './UserContent'
+import RoomContext from '../contexts/RoomContext'
+import Home from '../routes/Home'
+import Room from '../routes/Room'
+// import Clouds from './Clouds'
 import { TRoom, TRoomDTO } from '../types'
 import db from '../firebase'
 
-const variants = {
-  initial: {
-    opacity: 0,
-    y: -100,
-  },
-  animate: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, type: 'spring', bounce: 0.7 },
-  },
-  exit: {
-    opacity: 0,
-    y: -100,
-    transition: { duration: 0.5, ease: 'anticipate' },
-  },
-}
-
-const EMPTY_ROOM = {
-  key: '',
-  content: '',
-  expiresAt: {
-    seconds: 0,
-    nanoseconds: 0,
-  },
-}
-
 const App: React.FC = () => {
-  const [page, setPage] = useState<number>(1)
+  const history = useHistory()
+  const defaultRoom = useContext(RoomContext)
+  const [room, setRoom] = useState<TRoom>(defaultRoom)
   const [requestTimeout, setRequestTimeout] = useState<number>()
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [isError, setIsError] = useState<boolean>(false)
-
-  const [room, setRoom] = useState<TRoom>(EMPTY_ROOM)
   const [isSaved, setIsSaved] = useState<boolean>(true)
 
   const updateRoom = (content = '') => {
@@ -76,7 +55,7 @@ const App: React.FC = () => {
       })
   }
 
-  const handleRoomKeyChange = (ev: any) => {
+  const handleRoomIdChange = (ev: any) => {
     setRoom({ ...room, key: ev.target.value && ev.target.value.toLowerCase() })
   }
 
@@ -89,7 +68,7 @@ const App: React.FC = () => {
         .then((json) => {
           const { content, expiresAt } = json as TRoomDTO
           setRoom({ ...room, content, expiresAt })
-          setPage(2)
+          history.push(`/${room.key}`)
         })
         .catch(() => {
           setIsError(true)
@@ -113,13 +92,46 @@ const App: React.FC = () => {
     )
   }
 
-  const handleExitRoom = () => {
-    setRoom(EMPTY_ROOM)
-    setPage(1)
-  }
-
   return (
-    <div className="App">
+    <RoomContext.Provider value={room}>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/:roomId">
+            <Room />
+          </Route>
+        </Switch>
+      </Router>
+    </RoomContext.Provider>
+  )
+}
+
+export default App
+
+/* 
+
+import { AnimatePresence, motion } from 'framer-motion'
+
+const variants = {
+  initial: {
+    opacity: 0,
+    y: -100,
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, type: 'spring', bounce: 0.7 },
+  },
+  exit: {
+    opacity: 0,
+    y: -100,
+    transition: { duration: 0.5, ease: 'anticipate' },
+  },
+}
+
+<div className="App">
       <Clouds />
 
       <AnimatePresence>
@@ -144,9 +156,9 @@ const App: React.FC = () => {
           <div className="content-wrapper">
             <TitleHome />
             <Form
-              roomKey={room.key}
+              roomId={room.key}
               isLoading={isLoading}
-              handleChange={handleRoomKeyChange}
+              handleChange={handleRoomIdChange}
               handleSubmit={handleEnterRoom}
             />
           </div>
@@ -157,7 +169,7 @@ const App: React.FC = () => {
         <div className="Page Page2">
           <div className="content-wrapper">
             <TitleRoom
-              roomKey={room.key}
+              roomId={room.key}
               isSaved={isSaved}
               handleClick={handleExitRoom}
             />
@@ -165,8 +177,4 @@ const App: React.FC = () => {
           </div>
         </div>
       )}
-    </div>
-  )
-}
-
-export default App
+    </div> */

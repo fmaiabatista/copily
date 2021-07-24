@@ -1,4 +1,4 @@
-.UserContent {
+.RoomContent {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,7 +6,7 @@
   flex: 1;
 }
 
-.UserContent .user-content {
+.RoomContent .room-content {
   padding: 12px;
   font-size: 20px;
   font-family: 'Open sans', sans-serif;
@@ -17,29 +17,29 @@
   width: 100%;
 }
 
-.UserContent .user-content::placeholder {
+.RoomContent .room-content::placeholder {
   color: var(--gs-tertiary);
   font-weight: 300;
 }
 
-.UserContent .user-content::-webkit-input-placeholder {
+.RoomContent .room-content::-webkit-input-placeholder {
   text-align: center;
 }
 
-.UserContent .footer-wrapper {
+.RoomContent .footer-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 16px;
 }
 
-.UserContent .leaf {
+.RoomContent .leaf {
   width: 16px;
   height: 16px;
   margin-right: 6px;
 }
 
-.UserContent sub {
+.RoomContent sub {
   font-family: 'Montserrat', sans-serif;
   font-size: 14px;
   color: var(--gs-secondary);

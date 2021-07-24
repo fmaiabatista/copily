@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import './Form.css'
+import './HomeFormView.css'
 import { motion } from 'framer-motion'
-import arrowRight from '../assets/img/arrow-right.svg'
-import Loader from './Loader'
+import arrowRight from '../../assets/img/arrow-right.svg'
+import Loader from '../Loader'
 
 const variants = {
   hidden: { y: 100, opacity: 0 },
@@ -14,15 +14,15 @@ const variants = {
   },
 }
 
-const Form: React.FC<FormProps> = ({
-  roomKey,
+const HomeFormView: React.FC<HomeFormViewProps> = ({
+  roomId,
   isLoading,
   handleChange,
   handleSubmit,
 }) => {
   return (
     <motion.form
-      className="Form"
+      className="HomeForm"
       onSubmit={handleSubmit}
       initial="hidden"
       animate="visible"
@@ -35,7 +35,7 @@ const Form: React.FC<FormProps> = ({
           className="input-room"
           placeholder="enter room name"
           maxLength={12}
-          value={roomKey}
+          value={roomId}
           onChange={handleChange}
           disabled={isLoading}
         />
@@ -43,7 +43,7 @@ const Form: React.FC<FormProps> = ({
       <div>
         <button
           type="submit"
-          disabled={!roomKey || roomKey.length < 3 || isLoading}
+          disabled={!roomId || roomId.length < 3 || isLoading}
         >
           {isLoading && <Loader />}
           {!isLoading && (
@@ -55,17 +55,17 @@ const Form: React.FC<FormProps> = ({
   )
 }
 
-export default Form
+export default HomeFormView
 
-Form.propTypes = {
-  roomKey: PropTypes.string.isRequired,
+HomeFormView.propTypes = {
+  roomId: PropTypes.string.isRequired,
   isLoading: PropTypes.bool.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
 }
 
-type FormProps = {
-  roomKey: string
+type HomeFormViewProps = {
+  roomId: string
   isLoading: boolean
   handleChange: (ev: any) => void
   handleSubmit: (ev: any) => void

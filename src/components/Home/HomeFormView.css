@@ -1,11 +1,11 @@
-.Form {
+.HomeForm {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
 }
 
-.Form input {
+.HomeForm input {
   height: 46px;
   padding: 0 12px;
   font-size: 20px;
@@ -14,19 +14,19 @@
   transition: var(--transition-all-default);
 }
 
-.Form input::placeholder {
+.HomeForm input::placeholder {
   color: var(--gs-tertiary);
   font-weight: 300;
 }
 
-.Form input,
-.Form button {
+.HomeForm input,
+.HomeForm button {
   border: 1px solid var(--gs-secondary);
   border-radius: 8px;
   margin-top: 14px;
 }
 
-.Form button {
+.HomeForm button {
   width: 48px;
   height: 48px;
   background: var(--gs-quaternary);
@@ -39,17 +39,17 @@
   transition: var(--transition-all-default);
 }
 
-.Form input:disabled,
-.Form button:disabled {
+.HomeForm input:disabled,
+.HomeForm button:disabled {
   background: rgba(var(--gs-tertiary-rgb), 0.5);
   cursor: not-allowed;
 }
 
-.Form button:hover:not(:disabled) {
+.HomeForm button:hover:not(:disabled) {
   background: var(--gs-tertiary);
 }
 
-.Form .arrow-right {
+.HomeForm .arrow-right {
   width: 24px;
   height: 24px;
 }

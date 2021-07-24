@@ -1,8 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import './TitleRoom.css'
+import './RoomTitleView.css'
 import { motion } from 'framer-motion'
-import arrowLeft from '../assets/img/arrow-left.svg'
+import arrowLeft from '../../assets/img/arrow-left.svg'
 
 const parent = {
   hidden: { opacity: 0 },
@@ -14,23 +15,19 @@ const child = {
   visible: { opacity: 1, transition: { duration: 1 } },
 }
 
-const TitleRoom: React.FC<TitleRoomProps> = ({
-  roomKey,
-  isSaved,
-  handleClick,
-}) => {
+const RoomTitle: React.FC<RoomTitleProps> = ({ roomId, isSaved }) => {
   return (
     <motion.div
-      className="TitleRoom"
+      className="RoomTitle"
       initial="hidden"
       animate="visible"
       variants={parent}
     >
       <motion.div className="title-wrapper" variants={child}>
-        <button type="button" onClick={handleClick}>
+        <Link to="/">
           <img className="arrow-left" src={arrowLeft} alt="arrow-left" />
-        </button>
-        <h1>{roomKey}</h1>
+        </Link>
+        <h1>{roomId}</h1>
       </motion.div>
 
       <motion.div className="save-status" variants={child} key={`${isSaved}`}>
@@ -40,16 +37,14 @@ const TitleRoom: React.FC<TitleRoomProps> = ({
   )
 }
 
-export default TitleRoom
+export default RoomTitle
 
-TitleRoom.propTypes = {
-  roomKey: PropTypes.string.isRequired,
+RoomTitle.propTypes = {
+  roomId: PropTypes.string.isRequired,
   isSaved: PropTypes.bool.isRequired,
-  handleClick: PropTypes.func.isRequired,
 }
 
-type TitleRoomProps = {
-  roomKey: string
+type RoomTitleProps = {
+  roomId: string
   isSaved: boolean
-  handleClick: () => void
 }
