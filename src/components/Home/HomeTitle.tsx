@@ -1,8 +1,7 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import './HomeTitle.css'
 import { motion } from 'framer-motion'
 import paperplane from '../../assets/img/paperplane.svg'
-import RoomContext from '../../contexts/RoomContext'
 
 const parent = {
   hidden: { opacity: 0 },
@@ -15,8 +14,6 @@ const child = {
 }
 
 const HomeTitle: React.FC = () => {
-  const { content } = useContext(RoomContext)
-
   return (
     <motion.div
       className="HomeTitle"
@@ -25,7 +22,6 @@ const HomeTitle: React.FC = () => {
       variants={parent}
     >
       <motion.div className="title-wrapper" variants={child}>
-        <div>{content}</div>
         <h1>copily</h1>
         <img className="paperplane" src={paperplane} alt="paperplane" />
       </motion.div>

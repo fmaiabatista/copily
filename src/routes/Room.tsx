@@ -1,37 +1,19 @@
-import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
-// import RoomTitleLogic from '../components/RoomTitleLogic'
-// import RoomContentLogic from '../components/RoomContentLogic'
+import React from 'react'
+import Clouds from '../components/Clouds'
+import RoomTitleLogic from '../components/Room/RoomTitleLogic'
+import RoomContentLogic from '../components/Room/RoomContentLogic'
 
-const Room: React.FC = () => {
-  const { roomId } = useParams<RoomParams>()
-  // const [isSaved, setIsSaved] = useState<boolean>(true)
-
-  // const handleRoomContentChange = (ev: any) => {
-  //   const content = ev.target.value
-
-  //   // setRoom({ ...room, content })
-  //   setIsSaved(false)
-
-  //   clearTimeout(requestTimeout)
-  //   setRequestTimeout(
-  //     window.setTimeout(() => {
-  //       updateRoom(content).then(() => setIsSaved(true))
-  //     }, 1500)
-  //   )
-  // }
-
-  return (
-    <div>
-      Room: {roomId}
-      {/* <RoomTitleLogic roomId={roomId} isSaved={isSaved} /> */}
-      {/* <RoomContentLogic roomId={roomId} /> */}
-    </div>
-  )
-}
+const Room: React.FC = () => (
+  <>
+    <Clouds />
+    <RoomTitleLogic />
+    <RoomContentLogic />
+  </>
+)
 
 export default Room
 
-type RoomParams = {
-  roomId: string
-}
+// TODO
+// Handle room enter logic (load from DB)
+//   Use param to fetch, then once loaded, update context info
+// Handle Clouds and Grid

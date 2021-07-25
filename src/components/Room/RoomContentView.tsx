@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import './RoomContentView.css'
 import { motion } from 'framer-motion'
 import leaf from '../../assets/img/leaf.svg'
-import { TRoom } from '../../types'
 
 const parent = {
   hidden: { y: 100, opacity: 0 },
@@ -23,7 +22,10 @@ const child = {
   },
 }
 
-const RoomContent: React.FC<RoomContentProps> = ({ room, handleChange }) => {
+const RoomContent: React.FC<RoomContentProps> = ({
+  roomContent,
+  handleRoomContentChange,
+}) => {
   return (
     <motion.div
       className="RoomContent"
@@ -37,8 +39,8 @@ const RoomContent: React.FC<RoomContentProps> = ({ room, handleChange }) => {
         placeholder="write to your heart's content"
         cols={28}
         rows={10}
-        value={room.content}
-        onChange={handleChange}
+        value={roomContent}
+        onChange={handleRoomContentChange}
       />
       <motion.div className="footer-wrapper" variants={child}>
         <img className="leaf" src={leaf} alt="leaf" />
@@ -54,18 +56,11 @@ const RoomContent: React.FC<RoomContentProps> = ({ room, handleChange }) => {
 export default RoomContent
 
 RoomContent.propTypes = {
-  room: PropTypes.shape({
-    key: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired,
-    expiresAt: PropTypes.shape({
-      seconds: PropTypes.number.isRequired,
-      nanoseconds: PropTypes.number.isRequired,
-    }).isRequired,
-  }).isRequired,
-  handleChange: PropTypes.func.isRequired,
+  roomContent: PropTypes.string.isRequired,
+  handleRoomContentChange: PropTypes.func.isRequired,
 }
 
 type RoomContentProps = {
-  room: TRoom
-  handleChange: (ev: any) => void
+  roomContent: string
+  handleRoomContentChange: (ev: any) => void
 }

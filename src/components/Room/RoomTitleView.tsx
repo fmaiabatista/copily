@@ -15,7 +15,7 @@ const child = {
   visible: { opacity: 1, transition: { duration: 1 } },
 }
 
-const RoomTitle: React.FC<RoomTitleProps> = ({ roomId, isSaved }) => {
+const RoomTitle: React.FC<RoomTitleProps> = ({ roomKey, isSaved }) => {
   return (
     <motion.div
       className="RoomTitle"
@@ -27,7 +27,7 @@ const RoomTitle: React.FC<RoomTitleProps> = ({ roomId, isSaved }) => {
         <Link to="/">
           <img className="arrow-left" src={arrowLeft} alt="arrow-left" />
         </Link>
-        <h1>{roomId}</h1>
+        <h1>{roomKey}</h1>
       </motion.div>
 
       <motion.div className="save-status" variants={child} key={`${isSaved}`}>
@@ -40,11 +40,11 @@ const RoomTitle: React.FC<RoomTitleProps> = ({ roomId, isSaved }) => {
 export default RoomTitle
 
 RoomTitle.propTypes = {
-  roomId: PropTypes.string.isRequired,
+  roomKey: PropTypes.string.isRequired,
   isSaved: PropTypes.bool.isRequired,
 }
 
 type RoomTitleProps = {
-  roomId: string
+  roomKey: string
   isSaved: boolean
 }

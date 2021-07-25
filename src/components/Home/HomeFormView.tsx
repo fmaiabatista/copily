@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './HomeFormView.css'
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import arrowRight from '../../assets/img/arrow-right.svg'
-import Loader from '../Loader'
 
 const variants = {
   hidden: { y: 100, opacity: 0 },
@@ -15,15 +15,13 @@ const variants = {
 }
 
 const HomeFormView: React.FC<HomeFormViewProps> = ({
-  roomId,
-  isLoading,
-  handleChange,
-  handleSubmit,
+  isDisabled,
+  roomKey,
+  handleRoomKeyChange,
 }) => {
   return (
-    <motion.form
+    <motion.div
       className="HomeForm"
-      onSubmit={handleSubmit}
       initial="hidden"
       animate="visible"
       variants={variants}
@@ -35,38 +33,37 @@ const HomeFormView: React.FC<HomeFormViewProps> = ({
           className="input-room"
           placeholder="enter room name"
           maxLength={12}
-          value={roomId}
-          onChange={handleChange}
-          disabled={isLoading}
+          value={roomKey}
+          onChange={handleRoomKeyChange}
         />
       </div>
-      <div>
-        <button
-          type="submit"
-          disabled={!roomId || roomId.length < 3 || isLoading}
+      <button type="button" disabled={isDisabled}>
+        <Link
+          to={`/${roomKey}`}
+          style={{ pointerEvents: isDisabled ? 'none' : 'all' }}
         >
-          {isLoading && <Loader />}
-          {!isLoading && (
-            <img className="arrow-right" src={arrowRight} alt="arrow-right" />
-          )}
-        </button>
-      </div>
-    </motion.form>
+          <img className="arrow-right" src={arrowRight} alt="arrow-right" />
+        </Link>
+      </button>
+    </motion.div>
   )
 }
 
 export default HomeFormView
 
 HomeFormView.propTypes = {
-  roomId: PropTypes.string.isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  handleChange: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
+  isDisabled: PropTypes.bool.isRequired,
+  roomKey: PropTypes.string.isRequired,
+  handleRoomKeyChange: PropTypes.func.isRequired,
 }
 
 type HomeFormViewProps = {
-  roomId: string
-  isLoading: boolean
-  handleChange: (ev: any) => void
-  handleSubmit: (ev: any) => void
+  isDisabled: boolean
+  roomKey: string
+  handleRoomKeyChange: (ev: any) => void
 }
+
+// TODO
+// Changed from FORM element so Enter is not being listened to
+// Button and Anchor now need to be disabled together
+// "pointer-events: none" won't work for Enter key press

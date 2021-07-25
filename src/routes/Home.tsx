@@ -1,13 +1,17 @@
 import React from 'react'
+import Clouds from '../components/Clouds'
 import HomeTitle from '../components/Home/HomeTitle'
-// import HomeFormLogic from '../components/Home/HomeFormLogic'
+import HomeFormLogic from '../components/Home/HomeFormLogic'
 
 const Home: React.FC = () => (
   <>
-    <div>Home</div>
+    <Clouds />
     <HomeTitle />
-    {/* <HomeFormLogic /> */}
+    <HomeFormLogic />
   </>
 )
 
 export default Home
+
+// TODO
+// Handle Clouds and Grid
