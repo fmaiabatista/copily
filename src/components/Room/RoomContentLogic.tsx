@@ -1,14 +1,11 @@
-import React, { useContext } from 'react'
-import RoomContext from '../../contexts/RoomContext'
+import React from 'react'
+import PropTypes from 'prop-types'
 import RoomContentView from './RoomContentView'
-import { TRoomContext } from '../../types'
 
-const RoomContent: React.FC = () => {
-  const {
-    room: { content: roomContent },
-    handleRoomContentChange,
-  } = useContext<TRoomContext>(RoomContext)
-
+const RoomContentLogic: React.FC<RoomContentLogicProps> = ({
+  roomContent,
+  handleRoomContentChange,
+}) => {
   return (
     <RoomContentView
       roomContent={roomContent}
@@ -17,4 +14,14 @@ const RoomContent: React.FC = () => {
   )
 }
 
-export default RoomContent
+export default RoomContentLogic
+
+RoomContentLogic.propTypes = {
+  roomContent: PropTypes.string.isRequired,
+  handleRoomContentChange: PropTypes.func.isRequired,
+}
+
+type RoomContentLogicProps = {
+  roomContent: string
+  handleRoomContentChange: (ev: any) => void
+}

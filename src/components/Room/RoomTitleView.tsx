@@ -15,7 +15,7 @@ const child = {
   visible: { opacity: 1, transition: { duration: 1 } },
 }
 
-const RoomTitle: React.FC<RoomTitleProps> = ({ roomKey, isSaved }) => {
+const RoomTitleView: React.FC<RoomTitleViewProps> = ({ roomKey, isSaved }) => {
   return (
     <motion.div
       className="RoomTitle"
@@ -37,14 +37,14 @@ const RoomTitle: React.FC<RoomTitleProps> = ({ roomKey, isSaved }) => {
   )
 }
 
-export default RoomTitle
+export default RoomTitleView
 
-RoomTitle.propTypes = {
+RoomTitleView.propTypes = {
   roomKey: PropTypes.string.isRequired,
   isSaved: PropTypes.bool.isRequired,
 }
 
-type RoomTitleProps = {
+type RoomTitleViewProps = {
   roomKey: string
   isSaved: boolean
 }

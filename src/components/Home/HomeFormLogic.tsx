@@ -8,7 +8,7 @@ const HomeFormLogic: React.FC = () => {
 
   return (
     <HomeFormView
-      isDisabled={!room.key || room.key.length < 3}
+      isDisabled={!room.key}
       roomKey={room.key}
       handleRoomKeyChange={handleRoomKeyChange}
     />

@@ -1,5 +1,5 @@
 import React from 'react'
-import './HomeTitle.css'
+import './HomeTitleView.css'
 import { motion } from 'framer-motion'
 import paperplane from '../../assets/img/paperplane.svg'
 
@@ -13,7 +13,7 @@ const child = {
   visible: { opacity: 1, transition: { duration: 1 } },
 }
 
-const HomeTitle: React.FC = () => {
+const HomeTitleView: React.FC = () => {
   return (
     <motion.div
       className="HomeTitle"
@@ -30,4 +30,4 @@ const HomeTitle: React.FC = () => {
   )
 }
 
-export default HomeTitle
+export default HomeTitleView

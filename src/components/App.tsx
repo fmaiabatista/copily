@@ -61,7 +61,7 @@ const variants = {
             exit="exit"
           >
             <div className="message">
-              Oops, an error occured. Please try again 🤷‍♂️
+              Oops, an error occurred. Please try again 🤷‍♂️
             </div>
           </motion.div>
         )}

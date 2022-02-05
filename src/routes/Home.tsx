@@ -1,12 +1,13 @@
 import React from 'react'
 import Clouds from '../components/Clouds'
-import HomeTitle from '../components/Home/HomeTitle'
+import HomeTitleView from '../components/Home/HomeTitleView'
 import HomeFormLogic from '../components/Home/HomeFormLogic'
 
 const Home: React.FC = () => (
   <>
     <Clouds />
-    <HomeTitle />
+    {/* There's no *Logic to HomeTitle component */}
+    <HomeTitleView />
     <HomeFormLogic />
   </>
 )

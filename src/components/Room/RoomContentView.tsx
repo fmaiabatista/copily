@@ -22,7 +22,7 @@ const child = {
   },
 }
 
-const RoomContent: React.FC<RoomContentProps> = ({
+const RoomContentView: React.FC<RoomContentViewProps> = ({
   roomContent,
   handleRoomContentChange,
 }) => {
@@ -53,14 +53,14 @@ const RoomContent: React.FC<RoomContentProps> = ({
   )
 }
 
-export default RoomContent
+export default RoomContentView
 
-RoomContent.propTypes = {
+RoomContentView.propTypes = {
   roomContent: PropTypes.string.isRequired,
   handleRoomContentChange: PropTypes.func.isRequired,
 }
 
-type RoomContentProps = {
+type RoomContentViewProps = {
   roomContent: string
   handleRoomContentChange: (ev: any) => void
 }
