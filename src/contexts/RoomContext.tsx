@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { useHistory } from 'react-router-dom'
 import addHours from 'date-fns/addHours'
 import { TRoom, TRoomContext, TRoomDTO } from '../types'
 import db from '../firebase'
+
+const ROOMS = 'rooms'
 
 const emptyRoom = {
   key: '',
@@ -24,10 +25,10 @@ const RoomContext = React.createContext<TRoomContext>({
   handleRoomKeyChange: () => {},
   handleRoomContentChange: () => {},
   handleRoomEnter: () => {},
+  setRoomKey: () => {},
 })
 
 export const RoomProvider: React.FC<RoomContextProps> = ({ children }) => {
-  const history = useHistory()
   const [room, setRoom] = useState<TRoom>(emptyRoom)
   const [requestTimeout, setRequestTimeout] = useState<number>()
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -36,7 +37,7 @@ export const RoomProvider: React.FC<RoomContextProps> = ({ children }) => {
 
   const updateRoom = (content = '') => {
     return db
-      .collection('rooms')
+      .collection(ROOMS)
       .doc(room.key)
       .set({
         content,
@@ -46,14 +47,14 @@ export const RoomProvider: React.FC<RoomContextProps> = ({ children }) => {
 
   const createRoom = async () => {
     await updateRoom()
-    const doc = await db.collection('rooms').doc(room.key).get()
+    const doc = await db.collection(ROOMS).doc(room.key).get()
 
     return doc.data()
   }
 
   const fetchRoom = () => {
     return db
-      .collection('rooms')
+      .collection(ROOMS)
       .doc(room.key)
       .get()
       .then((doc) => {
@@ -65,8 +66,14 @@ export const RoomProvider: React.FC<RoomContextProps> = ({ children }) => {
       })
   }
 
+  // Change room key via form input
   const handleRoomKeyChange = (ev: any) => {
     setRoom({ ...room, key: ev.target.value && ev.target.value.toLowerCase() })
+  }
+
+  // Change room key directly
+  const setRoomKey = (key: string) => {
+    setRoom({ ...room, key })
   }
 
   const handleRoomContentChange = (ev: any) => {
@@ -83,22 +90,21 @@ export const RoomProvider: React.FC<RoomContextProps> = ({ children }) => {
     )
   }
 
-  const handleRoomEnter = (roomKey = '') => {
-    if (roomKey && roomKey.length > 2) {
-      setIsLoading(true)
-      fetchRoom()
-        .then((json) => {
-          const { content, expiresAt } = json as TRoomDTO
-          setRoom({ ...room, content, expiresAt })
-          history.push(`/${roomKey}`)
-        })
-        .catch(() => {
-          // setIsError(true)
-          // setTimeout(() => setIsError(false), 4000)
-        })
-        .finally(() => setIsLoading(false))
-    }
-  }
+  // const handleRoomEnter = (roomKey = '') => {
+  //   if (roomKey) {
+  //     setIsLoading(true)
+  //     fetchRoom()
+  //       .then((json) => {
+  //         const { content, expiresAt } = json as TRoomDTO
+  //         setRoom({ ...room, content, expiresAt })
+  //       })
+  //       .catch(() => {
+  //         // setIsError(true)
+  //         // setTimeout(() => setIsError(false), 4000)
+  //       })
+  //       .finally(() => setIsLoading(false))
+  //   }
+  // }
 
   return (
     <RoomContext.Provider
@@ -112,6 +118,7 @@ export const RoomProvider: React.FC<RoomContextProps> = ({ children }) => {
         handleRoomKeyChange,
         handleRoomContentChange,
         handleRoomEnter,
+        setRoomKey,
       }}
     >
       {children}

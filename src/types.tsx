@@ -8,6 +8,7 @@ export type TRoomContext = {
   handleRoomKeyChange: (ev: any) => void
   handleRoomContentChange: (ev: any) => void
   handleRoomEnter: (ev: any) => void
+  setRoomKey: (key: string) => void
 }
 
 export type TRoomDTO = {

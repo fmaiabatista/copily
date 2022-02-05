@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useCallback, useContext, useEffect } from 'react'
 import { useRouteMatch } from 'react-router-dom'
 import RoomContext from '../contexts/RoomContext'
 import { TRoomContext } from '../types'
@@ -15,6 +15,8 @@ const Room: React.FC = () => {
   const {
     room: { key: roomKeyFromContext, content: roomContent },
     isSaved,
+    setRoomKey,
+    handleRoomEnter,
     handleRoomContentChange,
   } = useContext<TRoomContext>(RoomContext)
 
@@ -23,7 +25,10 @@ const Room: React.FC = () => {
   const roomKeyFromParams = match?.params.roomKey
 
   // Defining props to pass down
-  const roomKey = roomKeyFromParams || roomKeyFromContext
+  const roomKey = roomKeyFromContext || roomKeyFromParams || ''
+
+  // !!!!!! WHEN I HAVE THE KEY, I SHOULD FETCH THE ROOM AND UPDATE THE STATE
+  // (I was trying to move handleEnterRoom to here, but have to check if it could work)
 
   return (
     <>
