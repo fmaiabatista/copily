@@ -1,27 +1,35 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
+import RoomContext from '../../contexts/RoomContext'
+import { TRoomContext } from '../../types'
 import RoomContentView from './RoomContentView'
 
-const RoomContentLogic: React.FC<RoomContentLogicProps> = ({
-  roomContent,
-  handleRoomContentChange,
-}) => {
+const RoomContentLogic: React.FC<RoomContentLogicProps> = ({ roomKey }) => {
+  const { isLoading, handleRoomContentChange, room } = useContext<TRoomContext>(
+    RoomContext
+  )
+
+  const handleChange = (ev: any) => handleRoomContentChange(roomKey, ev)
+
   return (
-    <RoomContentView
-      roomContent={roomContent}
-      handleRoomContentChange={handleRoomContentChange}
-    />
+    <>
+      {isLoading && <div>Loading...</div>}
+      {!isLoading && (
+        <RoomContentView
+          roomContent={room.content}
+          handleChange={handleChange}
+        />
+      )}
+    </>
   )
 }
 
 export default RoomContentLogic
 
 RoomContentLogic.propTypes = {
-  roomContent: PropTypes.string.isRequired,
-  handleRoomContentChange: PropTypes.func.isRequired,
+  roomKey: PropTypes.string.isRequired,
 }
 
 type RoomContentLogicProps = {
-  roomContent: string
-  handleRoomContentChange: (ev: any) => void
+  roomKey: string
 }

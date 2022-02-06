@@ -24,7 +24,7 @@ const child = {
 
 const RoomContentView: React.FC<RoomContentViewProps> = ({
   roomContent,
-  handleRoomContentChange,
+  handleChange,
 }) => {
   return (
     <motion.div
@@ -40,7 +40,7 @@ const RoomContentView: React.FC<RoomContentViewProps> = ({
         cols={28}
         rows={10}
         value={roomContent}
-        onChange={handleRoomContentChange}
+        onChange={handleChange}
       />
       <motion.div className="footer-wrapper" variants={child}>
         <img className="leaf" src={leaf} alt="leaf" />
@@ -57,10 +57,10 @@ export default RoomContentView
 
 RoomContentView.propTypes = {
   roomContent: PropTypes.string.isRequired,
-  handleRoomContentChange: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
 }
 
 type RoomContentViewProps = {
   roomContent: string
-  handleRoomContentChange: (ev: any) => void
+  handleChange: (ev: any) => void
 }

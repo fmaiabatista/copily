@@ -1,24 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { RoomProvider } from '../contexts/RoomContext'
 import './App.css'
 import Home from '../routes/Home'
 import Room from '../routes/Room'
 
-const App: React.FC = () => (
-  <RoomProvider>
-    <Router>
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/:roomKey">
-          <Room />
-        </Route>
-      </Switch>
-    </Router>
-  </RoomProvider>
-)
+const App: React.FC = () => {
+  const [roomKey, setRoomKey] = useState('')
+
+  return (
+    <RoomProvider>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Home roomKey={roomKey} setRoomKey={setRoomKey} />
+          </Route>
+          <Route path="/:roomKey">
+            <Room roomKey={roomKey} setRoomKey={setRoomKey} />
+          </Route>
+        </Switch>
+      </Router>
+    </RoomProvider>
+  )
+}
 
 export default App
 
