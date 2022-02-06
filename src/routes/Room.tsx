@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
 import { useRouteMatch } from 'react-router-dom'
 import RoomContext from '../contexts/RoomContext'
 import { TRoomContext } from '../types'
@@ -7,9 +6,11 @@ import Clouds from '../components/Clouds'
 import RoomTitleLogic from '../components/Room/RoomTitleLogic'
 import RoomContentLogic from '../components/Room/RoomContentLogic'
 
-const Room: React.FC<RoomProps> = ({ roomKey, setRoomKey }) => {
+const Room: React.FC = () => {
   const [isRoomInitialized, setIsRoomInitialized] = useState(false)
-  const { handleRoomInitialize } = useContext<TRoomContext>(RoomContext)
+  const { handleRoomInitialize, roomKey, setKey } = useContext<TRoomContext>(
+    RoomContext
+  )
 
   const match = useRouteMatch<MatchParams>('/:roomKey')
   const roomKeyFromParams = match?.params.roomKey || ''
@@ -17,9 +18,9 @@ const Room: React.FC<RoomProps> = ({ roomKey, setRoomKey }) => {
   // Define the room key, either from Home or URL
   useEffect(() => {
     if (!roomKey) {
-      setRoomKey(roomKeyFromParams)
+      setKey(roomKeyFromParams)
     }
-  }, [roomKey, setRoomKey, roomKeyFromParams])
+  }, [roomKey, setKey, roomKeyFromParams])
 
   // Once there's a key, enter the room
   useEffect(() => {
@@ -42,16 +43,6 @@ export default Room
 
 type MatchParams = {
   roomKey: string
-}
-
-Room.propTypes = {
-  roomKey: PropTypes.string.isRequired,
-  setRoomKey: PropTypes.func.isRequired,
-}
-
-type RoomProps = {
-  roomKey: string
-  setRoomKey: (roomKey: string) => void
 }
 
 // TODO

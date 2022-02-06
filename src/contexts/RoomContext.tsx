@@ -15,6 +15,7 @@ const emptyRoom = {
 }
 
 const RoomContext = React.createContext<TRoomContext>({
+  roomKey: '',
   room: emptyRoom,
   isLoading: false,
   isSaved: true,
@@ -23,50 +24,56 @@ const RoomContext = React.createContext<TRoomContext>({
   updateRoom: () => {},
   handleRoomContentChange: () => {},
   handleRoomInitialize: () => {},
+  setKey: () => {},
 })
 
 export const RoomProvider: React.FC<RoomContextProps> = ({ children }) => {
+  const [roomKey, setRoomKey] = useState('')
   const [room, setRoom] = useState<TRoomDTO>(emptyRoom)
   const [requestTimeout, setRequestTimeout] = useState<number>()
   const [isLoading, setIsLoading] = useState<boolean>(false)
   // const [isError, setIsError] = useState<boolean>(false)
   const [isSaved, setIsSaved] = useState<boolean>(true)
 
-  const updateRoom = (roomKey = '', content = '') => {
+  const setKey = (key = '') => {
+    setRoomKey(key)
+  }
+
+  const updateRoom = (key = '', content = '') => {
     return db
       .collection(ROOMS)
-      .doc(roomKey)
+      .doc(key)
       .set({
         content,
         expiresAt: addHours(new Date(), 1),
       })
   }
 
-  const createRoom = async (roomKey = '') => {
-    await updateRoom(roomKey)
-    const doc = await db.collection(ROOMS).doc(roomKey).get()
+  const createRoom = async (key = '') => {
+    await updateRoom(key)
+    const doc = await db.collection(ROOMS).doc(key).get()
 
     return doc.data()
   }
 
-  const fetchRoom = (roomKey = '') => {
+  const fetchRoom = (key = '') => {
     return db
       .collection(ROOMS)
-      .doc(roomKey)
+      .doc(key)
       .get()
       .then((doc) => {
         if (!doc.exists || doc?.data()?.expiresAt?.toDate() < new Date()) {
-          return createRoom(roomKey)
+          return createRoom(key)
         }
 
         return doc.data()
       })
   }
 
-  const handleRoomInitialize = (roomKey = '') => {
-    if (roomKey) {
+  const handleRoomInitialize = (key = '') => {
+    if (key) {
       setIsLoading(true)
-      fetchRoom(roomKey)
+      fetchRoom(key)
         .then((json) => {
           const { content, expiresAt } = json as TRoomDTO
           setRoom({ ...room, content, expiresAt })
@@ -79,7 +86,7 @@ export const RoomProvider: React.FC<RoomContextProps> = ({ children }) => {
     }
   }
 
-  const handleRoomContentChange = (roomKey: string, ev: any) => {
+  const handleRoomContentChange = (key: string, ev: any) => {
     const content = ev.target.value
 
     setRoom({ ...room, content })
@@ -88,7 +95,7 @@ export const RoomProvider: React.FC<RoomContextProps> = ({ children }) => {
     clearTimeout(requestTimeout)
     setRequestTimeout(
       window.setTimeout(() => {
-        updateRoom(roomKey, content).then(() => setIsSaved(true))
+        updateRoom(key, content).then(() => setIsSaved(true))
       }, 1500)
     )
   }
@@ -96,6 +103,7 @@ export const RoomProvider: React.FC<RoomContextProps> = ({ children }) => {
   return (
     <RoomContext.Provider
       value={{
+        roomKey,
         room,
         isLoading,
         isSaved,
@@ -104,6 +112,7 @@ export const RoomProvider: React.FC<RoomContextProps> = ({ children }) => {
         createRoom,
         handleRoomContentChange,
         handleRoomInitialize,
+        setKey,
       }}
     >
       {children}

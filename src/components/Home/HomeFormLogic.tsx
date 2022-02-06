@@ -1,32 +1,22 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { useContext } from 'react'
 import HomeFormView from './HomeFormView'
+import RoomContext from '../../contexts/RoomContext'
+import { TRoomContext } from '../../types'
 
-const HomeFormLogic: React.FC<HomeFormLogicProps> = ({
-  roomKey,
-  setRoomKey,
-}) => {
-  const handleRoomKeyChange = (ev: any) => {
-    setRoomKey(ev.target.value && ev.target.value.toLowerCase())
+const HomeFormLogic: React.FC = () => {
+  const { roomKey, setKey } = useContext<TRoomContext>(RoomContext)
+
+  const handleChange = (ev: any) => {
+    setKey(ev.target.value && ev.target.value.toLowerCase())
   }
 
   return (
     <HomeFormView
       isDisabled={!roomKey}
       roomKey={roomKey}
-      handleRoomKeyChange={handleRoomKeyChange}
+      handleChange={handleChange}
     />
   )
 }
 
 export default HomeFormLogic
-
-HomeFormLogic.propTypes = {
-  roomKey: PropTypes.string.isRequired,
-  setRoomKey: PropTypes.func.isRequired,
-}
-
-type HomeFormLogicProps = {
-  roomKey: string
-  setRoomKey: (roomKey: string) => void
-}

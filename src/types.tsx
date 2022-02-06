@@ -1,12 +1,14 @@
 export type TRoomContext = {
+  roomKey: string
   room: TRoomDTO
   isLoading: boolean
   isSaved: boolean
   fetchRoom: () => void
   createRoom: () => void
-  updateRoom: (roomKey: string, content: string) => void
-  handleRoomContentChange: (roomKey: string, ev: any) => void
+  updateRoom: (key: string, content: string) => void
+  handleRoomContentChange: (key: string, ev: any) => void
   handleRoomInitialize: (ev: any) => void
+  setKey: (key: string) => void
 }
 
 export type TRoomDTO = {

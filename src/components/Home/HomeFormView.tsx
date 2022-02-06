@@ -17,7 +17,7 @@ const variants = {
 const HomeFormView: React.FC<HomeFormViewProps> = ({
   isDisabled,
   roomKey,
-  handleRoomKeyChange,
+  handleChange,
 }) => {
   return (
     <motion.div
@@ -34,7 +34,7 @@ const HomeFormView: React.FC<HomeFormViewProps> = ({
           placeholder="enter room name"
           maxLength={12}
           value={roomKey}
-          onChange={handleRoomKeyChange}
+          onChange={handleChange}
         />
       </div>
       <button type="button" disabled={isDisabled}>
@@ -54,13 +54,13 @@ export default HomeFormView
 HomeFormView.propTypes = {
   isDisabled: PropTypes.bool.isRequired,
   roomKey: PropTypes.string.isRequired,
-  handleRoomKeyChange: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
 }
 
 type HomeFormViewProps = {
   isDisabled: boolean
   roomKey: string
-  handleRoomKeyChange: (ev: any) => void
+  handleChange: (ev: any) => void
 }
 
 // TODO
